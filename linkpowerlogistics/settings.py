@@ -31,7 +31,7 @@ SECRET_KEY = str(config('DJANGO_SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(config('DEBUG')) == "0" # 0 == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['167.99.3.153','www.linkpowerlogistics.com','linkpowerlogistics.com','127.0.0.1']
 
 
 # Application definition
