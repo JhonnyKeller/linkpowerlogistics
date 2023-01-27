@@ -55,12 +55,15 @@
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
         <nav id="navbar" class="navbar">
+
           <ul>
+
             <li><a href="{% url 'main:home' %}" class="active">Home</a></li>
-            <li><a href="#about">About</a></li>
             <li><a href="#service">Services</a></li>
+            <li><a href="#about">About</a></li>    
             <li><a class="get-a-quote" href="{% url 'main:home' %}">Get a Quote</a></li>
           </ul>
+
         </nav><!-- .navbar -->
 
       </div>
@@ -141,8 +144,10 @@
 
     </footer><!-- End Footer -->
     <!-- End Footer -->
+    <div class="container">
+      <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    </div>
 
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <div id="preloader"></div>
 
