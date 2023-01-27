@@ -58,10 +58,15 @@ function addItem() {
   var y = document.getElementById("existing_items").value;
   var volume = width * height * depth;
 
-  // Assigning item to the string of existing items
-  document.getElementById("existing_items").value = y + "," + x;
+
+
+
   // <tr> </tr>
   if ((itemName != "") && (quantity != "") && (width != "") && (height != "") && (depth != "") && (weight != "")){
+
+    // Assigning item to the string of existing items
+    document.getElementById("existing_items").value = y + "," + x;
+
     const new_tr_item = document.createElement("tr");
 
     new_tr_item.setAttribute('id','id-' + x.toString());
@@ -135,8 +140,18 @@ function addItem() {
     new_tr_item.appendChild(new_td_remove);
 
     tbody.appendChild(new_tr_item);
+
+    // adding +1 to stored_value
     x = parseInt(x) + 1;
-    console.log(x)
+    // toggle/untoogle no items
+    var existing_items = document.getElementById("existing_items").value
+    if (existing_items === ''){
+      document.getElementById('noitems').innerText = 'No items'
+    } else {
+      document.getElementById('noitems').innerText = ''
+    }
+
+
     document.getElementById("stored_value").value = x;
     document.getElementById("itemName").value = "";
     document.getElementById("quantity").value = "";
@@ -149,7 +164,6 @@ function addItem() {
     document.getElementById("stored_value_warning").value = "0";
   } else {
     const warning_exist = document.getElementById("stored_value_warning").value;
-    console.log(warning_exist);
     if (warning_exist == '0'){
       var warning = document.getElementById("warnings");
       warning.textContent = "Please fill out the blank spaces.";
@@ -175,6 +189,13 @@ function removeItem(x) {
     splited_string.splice(index, 1);
   }
   document.getElementById("existing_items").value = splited_string.toString();
+  // toggle/untoogle no items
+  var existing_items = document.getElementById("existing_items").value
+  if (existing_items === ''){
+    document.getElementById('noitems').innerText = 'No items'
+  } else {
+    document.getElementById('noitems').innerText = ''
+  }
 }
 
 function submitform() {
