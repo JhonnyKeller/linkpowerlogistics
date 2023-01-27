@@ -100,7 +100,7 @@ else:
     DATABASES = {
             'default' : {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'reservationsdb',
+            'NAME': 'linkpowerDB',
             'USER': 'may',
             'PASSWORD': str(config('DBONDATAPASS')),
             'HOST': 'localhost',
