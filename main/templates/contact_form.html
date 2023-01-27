@@ -1,0 +1,47 @@
+<body style="background-color: #d3d3d3;">
+  <style>
+    @import url('https://fonts.googleapis.com/css/css?family=Roboto');
+  </style> <br><br>
+  <center>
+    <div style="background-color:#fff; width: 70%; height: 600px; border-radius: 5px; margin-top: 50px; font-family: roboto;">
+      <br><br>
+      <h3>Link Power Logistics</h3>
+    <p style="font-size: 22px;">Hello, <a style="color: #0d6efd;">{{name}}</a></p>
+    <p style="font-size: 15px;">We received a request via this email address: <a style="color: #0d6efd; text-decoration: none;">{{email}}</a></p> <p style="font-size: 15px;"></p>
+    <hr style="color:#0d6efd; width: 80%;">
+
+    {% if item_list_len > 0 %}
+    <table class="table mt-2">
+      <thead>
+        <tr>
+          <th scope="col">Item name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Width</th>
+          <th scope="col">Height</th>
+          <th scope="col">Depth</th>
+          <th scope="col">Weight</th>
+        </tr>
+      </thead>
+      <tbody id="table_body">
+
+          {% for x in item_list %}
+            <tr id="{{x.id}}">
+              <td id="{{x.id_itemName}}">{{x.name}}</td>
+              <td id="{{x.id_quantity}}">{{x.quantity}}</td>
+              <td id="{{x.id_width}}">{{x.width}}</td>
+              <td id="{{x.id_height}}">{{x.height}}</td>
+              <td id="{{x.id_depth}}">{{x.depth}}</td>
+              <td id="{{x.id_weight}}">{{x.weight}}</td>
+            </tr>
+          {% endfor %}
+
+      </tbody>
+    </table>
+    {% endif %}
+    <p style="font-size: 25px;">We are glad that you are interested in our services!</p>
+    <p style="font-size: 16px;">We will be in touch with you as soon as possbile.</p> <br><br>
+    <br><br>
+    </div>
+    <p style="font-size: 30px; color: #0d6efd">Best regards!</p> <br><br>
+</center>
+</body>

@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero d-flex align-items-center">
+  <div class="container">
+    <div class="row gy-4 d-flex justify-content-between">
+      <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+        <h2 data-aos="fade-up">Get your instant quote bellow!</h2>
+        <p data-aos="fade-up" data-aos-delay="100">
+          If you're looking for a quick and easy way to get your car towed or move your forniture, then look no further than the fast and efficient service from Link Power Logistics Company.
+        </p>
+        <div class="row">
+          <div class="col-12">
+            <select onclick="CalcRoute()" id="type" class="geo form-select d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+              <option value='' selected>What are you moving?</option>
+              <option value="forniture">Forniture & Appliances</option>
+              <option  value="cars">Cars & vehicles</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <form action="#" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+              <input type="text" class="form-control" placeholder="Pick up ZIP code or CitY" id="id-google-address-b" name="google_address_b">
+            </form>
+
+          </div>
+          <div class="col-12 col-md-4">
+            <form action="#" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+              <input type="text" class="form-control" placeholder="Destination ZIP code or CitY" id="id-google-address-d" name="google_address_d">
+            </form>
+          </div>
+        </div>
+
+        <input type="hidden" class="geo" id="id-lat-a" value="{{lat_a}}">
+        <input type="hidden" class="geo" id="id-long-a" value="{{long_a}}">
+        <input type="hidden" class="geo" id="id-lat-b" value="">
+        <input type="hidden" class="geo" id="id-long-b" value="">
+        <input type="hidden" class="geo" id="id-lat-c" value="{{lat_c}}">
+        <input type="hidden" class="geo" id="id-long-c" value="{{long_c}}">
+        <input type="hidden" class="geo" id="id-lat-d" value="">
+        <input type="hidden" class="geo" id="id-long-d" value="">
+
+
+
+        <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
+
+          <div class="col-lg-3 col-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="2520" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Jobs Concluded</p>
+            </div>
+          </div><!-- End Stats Item -->
+          <div class="col-lg-3 col-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Years of experience</p>
+            </div>
+          </div><!-- End Stats Item -->
+<!-- End Stats Item -->
+
+        </div>
+      </div>
+
+      <div class="col-lg-5 order-1 order-lg-2 hero-img slideshow-margin" data-aos="zoom-out">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{% static 'img/services/removals1.jpg' %}" style="border-radius: 2%;" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{% static 'img/services/tow1.jpg' %}" style="border-radius: 2%;" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{% static 'img/services/tow3.jpg' %}" class="d-block w-100" style="border-radius: 2%;" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span  class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section><!-- End Hero Section -->
+
+<div style="height:auto;" class="d-flex align-items-center">
+  <div class="container d-flex justify-content-center">
+      <div class="container">
+        {% for x in info %}
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-6 mt-4 justify-content-center">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-3 col-md-1 mt-1">
+                  <i  style="font-size:30px;color:#102D3F;" class="fa-solid fa-envelope"></i>
+                </div>
+                <div id="phone_email" class="col-9 col-md-5">
+                  <h2 style="font-size:25px;"><a style="color:#102D3F;" href="mailto:{{x.email}}">{{x.email}}</a></h2>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-12 col-md-6 mt-4 justify-content-center">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-3 col-md-1">
+                  <i  style="font-size:30px;color:#102D3F;" class="fa-solid fa-phone mt-1"></i>
+                </div>
+                <div id="phone_email" class="col-9 col-md-5">
+                  <h2 id="service" style="font-size:25px;"><a style="color:#102D3F;" href="tel:{{x.phone_number}}">{{x.phone_number}}</a></h2>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+<hr>
+
+<div class="container">
+
+
+<main id="main ">
+
+  <!-- ======= Featured Services Section ======= -->
+  <section id="featured-services " class="featured-services">
+    <div class="container">
+
+      <div  class="row gy-4">
+
+        <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
+          <div class="icon flex-shrink-0"><i class="fa-solid fa-cart-flatbed"></i></div>
+          <div>
+            <h4 class="title">Safety</h4>
+            <p class="description">With the right tow vehicle and proper safety measures, you can safely transport your car from one place to another without any hassles.</p>
+            <a href="service-details.html" class="readmore stretched-link"><span>Get your quote!</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+        <!-- End Service Item -->
+
+        <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon flex-shrink-0"><i class="fa-solid fa-truck"></i></div>
+          <div>
+            <h4 class="title">Car & Vehicles</h4>
+            <p class="description">If you're looking for a quick and easy way to get your car towed, then look no further than the fast and efficient car tow service from Link Power Logistics! </p>
+            <a href="service-details.html" class="readmore stretched-link"><span>We are always ponctual ;)</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div><!-- End Service Item -->
+
+        <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon flex-shrink-0"><i class="fa-solid fa-truck-ramp-box"></i></div>
+          <div>
+            <h4 class="title">Forniture & Appliances</h4>
+            <p class="description">Moving house can be a stressful experience, but with the right removals company it doesn't have to be. We can provide you with safe and easy removals services that will make your move as smooth as possible.</p>
+            <a id="about" href="service-details.html" class="readmore stretched-link"><span>We are happy to help :)</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div><!-- End Service Item -->
+
+      </div>
+
+    </div>
+  </section><!-- End Featured Services Section -->
+
+  <!-- ======= About Us Section ======= -->
+  <section  class="about pt-0">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row gy-4">
+        <div class="col-lg-6 position-relative align-self-start order-lg-last order-first slideshow-margin-small">
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{% static 'img/services/removals1.jpg' %}" style="border-radius: 2%;" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'img/services/tow1.jpg' %}" style="border-radius: 2%;" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'img/services/tow3.jpg' %}" class="d-block w-100" style="border-radius: 2%;" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-6 content order-last  order-lg-first">
+          <h3>About Us</h3>
+          <p>
+            If you're in a bind and need to get your car towed, you'll want to know that it's being done quickly and efficiently.
+             That's where our team comes in! We specialize in fast car tows so that you can get back on the road as soon as possible.
+
+          </p>
+          <ul>
+            <li data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-fullscreen-exit"></i>
+              <div>
+                <h5>Trust</h5>
+                <p>At Link Power Logistics, we understand the importance of trust when it comes to towing your vehicle.
+                  That’s why we strive to provide the best and most reliable service possible. </p>
+              </div>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-broadcast"></i>
+              <div>
+                <h5>Experience</h5>
+                <p>We have been in business for over 5 years and take pride in our commitment to safety, customer service, and quality workmanship.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End About Us Section -->
+
+  </main>
+
+</div>
+{% endblock %}
+
+  {% block extend_footer %}
+  <script type="text/javascript">
+      var google_api_key = "{{google_api_key|safe}}";
+  </script>
+
+  <script src="{% static 'google_places.js' %}"></script>
+  {% endblock %}

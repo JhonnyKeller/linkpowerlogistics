@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- ======= Breadcrumbs ======= -->
+<div class="breadcrumbs">
+  <div class="page-header d-flex align-items-center" style="background-image: url({% static 'img/page-header.jpg' %});">
+    <div class="container position-relative">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 text-center">
+          <h2>Get your quote below</h2>
+          <p>At Link Power Logistics, we understand that getting the best price is essential for your project.
+            That's why we offer the best quote for all your needs.
+            We are committed to providing you with the highest quality service at an affordable price.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav>
+    <div class="container">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li>Quotes</li>
+      </ol>
+    </div>
+  </nav>
+</div><!-- End Breadcrumbs -->
+
+<div class="container">
+  <div class="row">
+    <div class="map-container mt-2">
+
+       <div id="map-route"></div>
+
+    </div>
+    <div class="col-12 col-md-6">
+
+          <div id="create_the_item" class="row mt-3">
+            <div class="col-3 mt-1">
+              <h6>Item name:</h6>
+            </div>
+          <div class="mb-3 col-4">
+            <input placeholder="Item Name" type="text" class="form-control" id="itemName" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3 col-4">
+            <input placeholder="Quantity" type="number" class="form-control" id="quantity">
+          </div>
+          <div class=" col-12">
+            <h6>Estimated dimensions:</h6>
+          </div>
+          <div class="mb-3  col-3">
+            <input placeholder="Width" type="number" class="form-control" id="width">
+          </div>
+          <div class="mb-3  col-3">
+            <input placeholder="Height" type="number" class="form-control" id="height">
+          </div>
+          <div class="mb-3  col-3">
+            <input placeholder="Depth" type="number" class="form-control" id="depth">
+          </div>
+          <div class="mb-3  col-3">
+            <select id="type_measurement" class="form-select d-flex align-items-stretch mb-3">
+              <option selected>cm</option>
+              <option value="forniture">m</option>
+              <option value="forniture">in</option>
+              <option value="forniture">ft</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <h6>Estimated weight:</h6>
+          </div>
+          <div class="mb-3 col-4">
+            <input placeholder="Weight" type="number" class="form-control" id="weight">
+          </div>
+          <div class="mb-3 col-4">
+            <select id="type_weight" class="form-select d-flex align-items-stretch mb-3">
+              <option selected>Kg</option>
+              <option value="forniture">Lbs</option>
+            </select>
+          </div>
+          <div class="col-4 mb-3">
+            <button onclick="addItem()" class="form-control btn btn-primary">Add item</button>
+          </div>
+          <input type="hidden" id="stored_value_warning" value="0">
+          <p style="color:red;" id="warnings"></p>
+          </div>
+
+
+    </div>
+
+    <div class="col-12 mb-5">
+      <input type="hidden" id="stored_value" value="{{stored_value}}">
+      <input type="hidden" id="existing_items" value="{{stored_string}}">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Item name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">volume</th>
+            <th scope="col">weight</th>
+            <th scope="col">remove</th>
+          </tr>
+        </thead>
+        <tbody id="table_body">
+          {% for x in item_list %}
+          <tr id="{{x.id}}">
+            <td id="{{x.id_itemName}}" value="{{x.name}}">{{x.name}}</td>
+            <td id="{{x.id_quantity}}" value="{{x.quantity}}">{{x.quantity}}</td>
+            <input type="hidden" value="{{x.height}}" id="{{x.id_height}}">{{x.height}}</input>
+            <input type="hidden" value="{{x.height}}" id="{{x.id_depth}}">{{x.depth}}</input>
+            <input type="hidden" value="{{x.width}}" id="{{x.id_width}}">{{x.width}}</input>
+            <td id="{{x.volume_id}}" value="{{x.volume}}">{{x.volume}}</td>
+            <td id="{{x.id_weight}}" value="{{x.weight}}">{{x.weight}}</td>
+            <td><button class="btn btn-primary" name="button" onClick="removeItem('{{x.id}}')">remove item</button></td>
+            <input type="hidden" value="{{x.dimension}}" id="{{x.id_typemeasurement}}">{{x.dimension}}</input>
+            <input type="hidden" value="{{x.weight_type}}" id="{{x.id_typeweight}}">{{x.weight_type}}</input>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <input type="hidden"  id="id-google-address-b" value="{{pick_up_adress}}">
+    <input type="hidden"  id="id-google-address-d" value="{{client_destination}}">
+
+    <div class="col-12 mb-4">
+      <div class="row d-flex justify-content-end">
+        <div class="col-4">
+          <button onClick="submitform()" id="" class="form-control btn btn-primary">Get quote</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+{% endblock %}
+
+{% block extend_footer %}
+
+
+<script type="text/javascript">
+
+    var google_api_key = "{{google_api_key|safe}}";
+    var lat_a = {{lat_a|safe}};
+    var long_a = {{long_a|safe}};
+    var lat_b = {{lat_b|safe}};
+    var long_b = {{long_b|safe}};
+    var lat_c = {{lat_c|safe}};
+    var long_c = {{long_c|safe}};
+    var lat_d = {{lat_d|safe}};
+    var long_d = {{long_d|safe}};
+    var origin = "{{origin|safe}}";
+    var destination = "{{destination|safe}}";
+    var directions = {{directions|safe}}
+
+  </script>
+
+  <script src="{% static 'google_maps.js' %}"></script>
+
+
+{% endblock %}
