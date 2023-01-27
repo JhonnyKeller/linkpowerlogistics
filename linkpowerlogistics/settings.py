@@ -100,7 +100,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 DATABASES = {
         'default' : {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'linkpowerDB',
+        'NAME': 'linkpowerdb',
         'USER': 'may',
         'PASSWORD': str(config('DBONDATAPASS')),
         'HOST': 'localhost',
