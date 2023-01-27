@@ -91,9 +91,9 @@
   </div>
 </section><!-- End Hero Section -->
 {% for x in info %}
-<div style="height:auto;" class="container d-flex justify-content-center">
-        <div class="row justify-content-start">
-          <div class="col-12 col-md-6 mt-4 ">
+<div style="height:auto;" class="container justify-content-center">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-6 mt-4">
             <div class="container">
               <div class="row justify-content-center">
                 <div class="col-2 col-md-1 mt-1">
@@ -103,10 +103,9 @@
                   <h2 class="mt-2" style="font-size:21px;"><a style="color:#102D3F;" href="mailto:{{x.email}}">{{x.email}}</a></h2>
                 </div>
               </div>
-
             </div>
           </div>
-          <div class="col-12 col-md-6 mt-4 justify-content-start">
+          <div class="col-12 col-md-6 mt-4">
             <div class="container">
               <div class="row justify-content-center">
                 <div class="col-2 col-md-1">
@@ -116,11 +115,9 @@
                   <h2 class="mt-2" id="service" style="font-size:21px;"><a style="color:#102D3F;" href="tel:{{x.phone_number}}">{{x.phone_number}}</a></h2>
                 </div>
               </div>
-
             </div>
-
           </div>
-  </div>
+      </div>
 </div>
 {% endfor %}
 <hr>
