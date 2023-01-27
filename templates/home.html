@@ -90,11 +90,11 @@
     </div>
   </div>
 </section><!-- End Hero Section -->
-
+{% for x in info %}
 <div style="height:auto;" class="d-flex align-items-center">
   <div class="container d-flex justify-content-center">
-      <div class="container">
-        {% for x in info %}
+
+        <div class="container">
         <div class="row justify-content-center">
           <div class="col-12 col-md-6 mt-4 justify-content-center">
             <div class="container">
@@ -126,9 +126,10 @@
 
         </div>
       </div>
-      {% endfor %}
+
   </div>
 </div>
+{% endfor %}
 <hr>
 
 <div class="container">
