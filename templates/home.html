@@ -91,18 +91,15 @@
   </div>
 </section><!-- End Hero Section -->
 {% for x in info %}
-<div style="height:auto;" class="container d-flex align-items-center">
-  <div class="container d-flex justify-content-center">
-
-        <div class="container">
+<div style="height:auto;" class="container d-flex justify-content-center">
         <div class="row justify-content-start">
           <div class="col-12 col-md-6 mt-4 ">
             <div class="container">
               <div class="row justify-content-center">
-                <div class="col-3 col-md-1 mt-1">
+                <div class="col-2 col-md-1 mt-1">
                   <i  style="font-size:30px;color:#102D3F;" class="fa-solid fa-envelope"></i>
                 </div>
-                <div id="phone_email" class="col-9 col-md-5">
+                <div id="phone_email" class="col-10 col-md-5">
                   <h2 class="mt-2" style="font-size:21px;"><a style="color:#102D3F;" href="mailto:{{x.email}}">{{x.email}}</a></h2>
                 </div>
               </div>
@@ -112,10 +109,10 @@
           <div class="col-12 col-md-6 mt-4 justify-content-start">
             <div class="container">
               <div class="row justify-content-center">
-                <div class="col-3 col-md-1">
+                <div class="col-2 col-md-1">
                   <i  style="font-size:30px;color:#102D3F;" class="fa-solid fa-phone mt-1"></i>
                 </div>
-                <div id="phone_email" class="col-9 col-md-5">
+                <div id="phone_email" class="col-10 col-md-5">
                   <h2 class="mt-2" id="service" style="font-size:21px;"><a style="color:#102D3F;" href="tel:{{x.phone_number}}">{{x.phone_number}}</a></h2>
                 </div>
               </div>
@@ -123,10 +120,6 @@
             </div>
 
           </div>
-
-        </div>
-      </div>
-
   </div>
 </div>
 {% endfor %}
