@@ -12,10 +12,8 @@ function initAutocomplete() {
   for (i = 0; i < auto_fields.length; i++) {
     var field = auto_fields[i]
     window['autocomplete_'+field] = new google.maps.places.Autocomplete(
-      document.getElementById('id-google-address-' + field),
-    {
-       types: ['postal_code'],
-       componentRestrictions: {'country': ['uk']},
+      document.getElementById('id-google-address-' + field),{
+      componentRestrictions: {'country': ['uk']},
     })
   }
 
@@ -51,6 +49,12 @@ function onPlaceChanged (addy){
     });
 }
 
+function addWarningAutocomplete(){
+  document.getElementById('fill_in_autocomplete').innerText = 'Please use the autocomplete to fill in.'
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+    window.moveTo(0, 22);
+}
+}
 
 function validateForm() {
     var valid = true;
