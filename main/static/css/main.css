@@ -85,6 +85,38 @@ h6 {
 
 .nobr { white-space: nowrap }
 
+.fixed-whatsapp {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 75px;
+  height: 75px;
+  font-size: 40px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  background-color: white;
+  border: 3px solid #44B111;
+  color: #44B111;
+  font-family: number_and_email;
+}
+
+.fixed-whatsapp:hover {
+  position: fixed;
+  font-family: number_and_email;
+  background-color: white;
+  bottom: 0;
+  right: 0;
+  width: 75px;
+  height: 75px;
+  font-size: 40px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  border: 3px solid #58D51E;
+  color: #58D51E;
+}
+
 /*--------------------------------------------------------------
 # Sections & Section Header
 --------------------------------------------------------------*/

@@ -154,6 +154,7 @@ def quotation_forniture(request):
     time = request.POST.get("time", '0')
     car_brand = request.POST.get("car_brand", '0')
     car_model = request.POST.get("car_model", '0')
+    number_of_rooms = request.POST.get("number_of_rooms", '0')
     name = request.POST.get("name", '0')
     email = request.POST.get("email", '0')
     phone_number = request.POST.get("phone_number", '0')
@@ -161,8 +162,12 @@ def quotation_forniture(request):
     form = quotationForm()
     total_quotation = 0
     item_list = []
+    if type == '0':
+        type = 'cars'
     if type == 'cars' and stage == '1':
         stage = '4'
+    if type == 'homeremovals' and stage == '1':
+        stage = '7'
     directions = Directions(
     lat_a=lat_a,
     long_a=long_a,
@@ -177,7 +182,7 @@ def quotation_forniture(request):
     total_weight = 0
 
     if request.method == 'POST':
-        if stage == '2' and car_brand == '0':
+        if stage == '2' and car_brand == '0' and number_of_rooms == '0':
             dic_list = {}
             total_volume = 0
             total_weight = 0
@@ -237,6 +242,8 @@ def quotation_forniture(request):
         else:
             total_quotation = float(directions['distance'])*info[0].price_per_mile
 
+        if number_of_rooms != '0' and stage == '2':
+            total_quotation = (int(number_of_rooms) * info[0].price_per_room) + (float(directions['distance'])*info[0].price_per_mile)
 
         if stage == '5':
             stage = '6'
@@ -288,6 +295,7 @@ def quotation_forniture(request):
                 'total_quotation':int(total_quotation),
                 "item_list": item_list,
                 "item_list_len":item_list_len,
+                "number_of_rooms":number_of_rooms,
             }
             message = template.render(email_context)
             email_forclient = EmailMultiAlternatives (
@@ -312,6 +320,7 @@ def quotation_forniture(request):
                 "type": type,
                 "item_list": item_list,
                 "item_list_len":item_list_len,
+                "number_of_rooms":number_of_rooms,
             }
             quote_message = template.render(email_context)
             quote_email = EmailMultiAlternatives (
@@ -328,6 +337,7 @@ def quotation_forniture(request):
 
     context = {
         "day":day,
+        "number_of_rooms":number_of_rooms,
         "time":time,
         "google_api_key": settings.API_KEY,
         "stage": stage,

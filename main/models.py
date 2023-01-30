@@ -9,6 +9,7 @@ class information(models.Model):
     weight_price_per_kg = models.FloatField()
     volume_price_per_cm_cubic = models.FloatField()
     activate_dimension_prices = models.BooleanField(default=0)
+    price_per_room = models.FloatField(default=0)
     price_per_mile = models.FloatField()
     open_time = models.CharField(max_length=64,default='09:00h')
     closing_time = models.CharField(max_length=64,default='19:00h')
