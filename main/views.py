@@ -182,7 +182,7 @@ def quotation_forniture(request):
     total_weight = 0
 
     if request.method == 'POST':
-        if stage == '2' and car_brand == '0' and number_of_rooms == '0':
+        if string != None:
             dic_list = {}
             total_volume = 0
             total_weight = 0
@@ -243,7 +243,13 @@ def quotation_forniture(request):
             total_quotation = float(directions['distance'])*info[0].price_per_mile
 
         if number_of_rooms != '0' and stage == '2':
-            total_quotation = (int(number_of_rooms) * info[0].price_per_room) + (float(directions['distance'])*info[0].price_per_mile)
+            if int(number_of_rooms) == 1:
+                total_quotation = (int(number_of_rooms) * info[0].price_per_room_one) + (float(directions['distance'])*info[0].price_per_mile)
+            if int(number_of_rooms) == 2:
+                total_quotation = (int(number_of_rooms) * info[0].price_per_room_two) + (float(directions['distance'])*info[0].price_per_mile) + info[0].price_per_room_one
+            if int(number_of_rooms) > 2:
+                total_quotation  = (int(number_of_rooms) * info[0].price_per_room_three_plus) + (float(directions['distance'])*info[0].price_per_mile) + info[0].price_per_room_one + info[0].price_per_room_two
+
 
         if stage == '5':
             stage = '6'

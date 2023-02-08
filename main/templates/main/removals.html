@@ -38,28 +38,28 @@
           <h5 style="color:grey;">Please add your items bellow (example:tables,boxes,pianos,etc..)</h5>
       <br>
           <div id="create_the_item" class="row mt-3">
-            <div class="col-3 mt-1">
+            <div class="col-12">
               <h6>Item name:</h6>
             </div>
-          <div class="mb-3 col-4">
+          <div class="mb-3 col-6">
             <input placeholder="Item Name" type="text" class="form-control" id="itemName" aria-describedby="emailHelp">
           </div>
-          <div class="mb-3 col-4">
+          <div class="mb-3 col-6">
             <input placeholder="Quantity" type="number" class="form-control" id="quantity">
           </div>
           <div class=" col-12">
             <h6>Estimated dimensions:</h6>
           </div>
-          <div class="mb-3  col-3">
+          <div class="mb-3  col-6">
             <input placeholder="Width" type="number" class="form-control" id="width">
           </div>
-          <div class="mb-3  col-3">
+          <div class="mb-3  col-6">
             <input placeholder="Height" type="number" class="form-control" id="height">
           </div>
-          <div class="mb-3  col-3">
+          <div class="mb-3  col-6">
             <input placeholder="Depth" type="number" class="form-control" id="depth">
           </div>
-          <div class="mb-3  col-3">
+          <div class="mb-3  col-6">
             <select id="type_measurement" class="form-select d-flex align-items-stretch mb-3">
               <option selected>cm</option>
               <option value="forniture">m</option>
@@ -98,8 +98,8 @@
           <tr>
             <th scope="col">Item name</th>
             <th scope="col">Quantity</th>
-            <th scope="col">volume</th>
-            <th scope="col">weight</th>
+            <th class="hide_item" scope="col">volume</th>
+            <th class="hide_item" scope="col">weight</th>
             <th scope="col">remove</th>
           </tr>
         </thead>
@@ -113,8 +113,8 @@
             <input type="hidden" value="{{x.height}}" id="{{x.id_height}}">{{x.height}}</input>
             <input type="hidden" value="{{x.height}}" id="{{x.id_depth}}">{{x.depth}}</input>
             <input type="hidden" value="{{x.width}}" id="{{x.id_width}}">{{x.width}}</input>
-            <td id="{{x.volume_id}}" value="{{x.volume}}">{{x.volume}}</td>
-            <td id="{{x.id_weight}}" value="{{x.weight}}">{{x.weight}}</td>
+            <td class="hide_item" id="{{x.volume_id}}" value="{{x.volume}}">{{x.volume}}</td>
+            <td class="hide_item" id="{{x.id_weight}}" value="{{x.weight}}">{{x.weight}}</td>
             <td><button class="btn btn-primary" name="button" onClick="removeItem('{{x.id}}')">remove item</button></td>
             <input type="hidden" value="{{x.dimension}}" id="{{x.id_typemeasurement}}">{{x.dimension}}</input>
             <input type="hidden" value="{{x.weight_type}}" id="{{x.id_typeweight}}">{{x.weight_type}}</input>

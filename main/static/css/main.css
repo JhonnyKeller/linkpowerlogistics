@@ -187,6 +187,11 @@ section {
     font-size: 38px;
   }
 }
+@media (max-width: 800px) {
+  .hide_item {
+    display: none;
+  }
+}
 
 /*--------------------------------------------------------------
 # Breadcrumbs

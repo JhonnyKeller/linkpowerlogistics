@@ -109,12 +109,14 @@ function addItem() {
     new_td_volume.textContent = volume.toString() + ' ' + type_measurement + '3';
     new_td_volume.setAttribute('id','id-volume-' + x.toString());
     new_td_volume.setAttribute('value',volume);
+    new_td_volume.setAttribute('class','hide_item');
     new_tr_item.appendChild(new_td_volume);
 
     const new_td_weight = document.createElement("td");
     new_td_weight.textContent = weight.toString() + ' ' + type_weight;
     new_td_weight.setAttribute('id','id-weight-' + x.toString());
     new_td_weight.setAttribute('value',weight);
+    new_td_weight.setAttribute('class','hide_item');
     new_tr_item.appendChild(new_td_weight);
 
     const new_td_typemeasurement = document.createElement("input");
@@ -233,9 +235,11 @@ function submitform() {
     console.log(string);
   }
   string = string.slice(0,string.length - 2)
-  console.log('string');
-  console.log(string);
-  if ( string != 's'){
+  var url_string = window.location;
+  var url = new URL(url_string);
+  var type = url.searchParams.get("type");
+
+  if ( string != ''){
     var pick_up_adress = document.getElementById("id-google-address-b").value
     var client_destination = document.getElementById("id-google-address-d").value
     var params = {
@@ -246,6 +250,7 @@ function submitform() {
         long_d: long_d,
         pick_up_adress: pick_up_adress,
         client_destination: client_destination,
+        type: type,
     };
     console.log('here');
     var esc = encodeURIComponent;
@@ -273,7 +278,7 @@ function edit(){
       pick_up_adress: $('#pick_up_adress').val(),
       client_destination: $('#client_destination').val(),
   };
-  console.log('here');
+
   var esc = encodeURIComponent;
   var query = Object.keys(params)
       .map(k => esc(k) + '=' + esc(params[k]))

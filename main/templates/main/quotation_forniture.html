@@ -67,8 +67,8 @@
             <input type="hidden" name="string" value="{{string}}">
           </div>
           <div class="container mb-3">
-            <div class="row">
-              <div class="col-2">
+            <div class="row justify-content-end">
+              <div class="col-12 text-end">
                 <button type="submit" class="choosendate btn btn-primary mt-3" name="stage" value="2">Get quote</button>
               </div>
 
@@ -97,8 +97,8 @@
           </div>
 
           <div class="container mb-3">
-            <div class="row">
-              <div class="col-2">
+            <div class="row justify-content-end">
+              <div class="col-12 text-end">
                 <button type="submit" class="choosendate btn btn-primary mt-3" name="stage" value="2">Get quote</button>
               </div>
 
@@ -116,15 +116,16 @@
           {% csrf_token %}
           <p class="mt-3">Date: <input name="day" class="form-control" value='{{choosen_day}}' type="date" id="date_picker" required></p>
           <p class="mt-3">Time: <input name="time" class="form-control" value='{{choosen_day}}'  type="time" required>
-          {% for x in info %} <small>We are open from {{x.open_time}} to {{x.closing_time}}</small></p> {% endfor %}
+          {% for x in info %} <small>We are open from {{x.open_time}} to {{x.closing_time}}</small></p>
 
               <p class="mt-3"><small>Number of rooms</small>
-              <input placeholder="Quantity" type="number" name="number_of_rooms" class="form-control" id="quantity"></p>
+              <input placeholder="Quantity" type="number" name="number_of_rooms" class="form-control" id="quantity" required>
+              <small>The price of the 1st room is {{x.price_per_room_one}}£, the 2nd room is {{x.price_per_room_two}}£ and from the 3rd room up is {{x.price_per_room_three_plus}}£</small></p>
 
-
+          {% endfor %}
           <div class="container mb-3">
-            <div class="row">
-              <div class="col-2">
+            <div class="row justify-content-end">
+              <div class="col-12 text-end">
                 <button type="submit" class="choosendate btn btn-primary mt-3" name="stage" value="2">Get quote</button>
               </div>
 
@@ -234,7 +235,7 @@
               <div class="col-3">
                 <button type="submit" class="choosendate btn btn-primary mt-3" onclick="history.back()" name="">back</button>
               </div>
-              <div class="col-4 col-md-8">
+              <div class="col-9">
                 <button type="submit" class="choosendate btn btn-primary mt-3" name="stage" value="5">send your quote</button>
               </div>
 
