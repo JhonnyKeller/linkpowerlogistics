@@ -13,6 +13,7 @@ class information(models.Model):
     price_per_room_two = models.FloatField(default=0)
     price_per_room_three_plus = models.FloatField(default=0)
     price_per_mile = models.FloatField()
+    minimum_price = models.FloatField(default=0)
     open_time = models.CharField(max_length=64,default='09:00h')
     closing_time = models.CharField(max_length=64,default='19:00h')
     open_days_message = models.CharField(max_length=64,default='We don\'t work in the weekends')

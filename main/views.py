@@ -238,9 +238,15 @@ def quotation_forniture(request):
             else:
                 dimension_to_charge = total_weight
         if dimension_to_charge != 0:
-            total_quotation = dimension_to_charge + (float(directions['distance'])*info[0].price_per_mile)
+            if dimension_to_charge + (float(directions['distance'])*info[0].price_per_mile) < info[0].minimum_price:
+                total_quotation = dimension_to_charge + (float(directions['distance'])*info[0].price_per_mile) + info[0].minimum_price
+            else:
+                total_quotation = dimension_to_charge + (float(directions['distance'])*info[0].price_per_mile) + (info[0].minimum_price/2)
         else:
-            total_quotation = float(directions['distance'])*info[0].price_per_mile
+            if float(directions['distance'])*info[0].price_per_mile < info[0].minimum_price:
+                total_quotation = float(directions['distance'])*info[0].price_per_mile + info[0].minimum_price
+            else:
+                total_quotation = float(directions['distance'])*info[0].price_per_mile + (info[0].minimum_price/2)
 
         if number_of_rooms != '0' and stage == '2':
             if int(number_of_rooms) == 1:
