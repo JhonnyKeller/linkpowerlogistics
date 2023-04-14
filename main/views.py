@@ -19,10 +19,10 @@ Basic view for routing
 def route(request):
     info = information.objects.all()
     geolocator = Nominatim(user_agent="myGeolocator", timeout=10)
-    location = geolocator.geocode(info[0].business_location_zip_code)
+    location = geolocator.geocode(info[0].business_location_zip_code, timeout=10)
     lat_a = location.latitude
     long_a = location.longitude
-    location = geolocator.geocode(info[0].business_location_zip_code)
+    location = geolocator.geocode(info[0].business_location_zip_code, timeout=10)
     lat_c = location.latitude
     long_c = location.longitude
     context = {
@@ -134,10 +134,10 @@ def map(request):
 def quotation_forniture(request):
     info = information.objects.all()
     geolocator = Nominatim(user_agent="myGeolocator",timeout=10)
-    location = geolocator.geocode(info[0].business_location_zip_code)
+    location = geolocator.geocode(info[0].business_location_zip_code, timeout=10)
     lat_a = location.latitude
     long_a = location.longitude
-    location = geolocator.geocode(info[0].business_location_zip_code)
+    location = geolocator.geocode(info[0].business_location_zip_code, timeout=10)
     lat_c = location.latitude
     long_c = location.longitude
     string = request.GET.get("string", None)
